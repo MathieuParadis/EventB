@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+  
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <style>
+    .carte {
+        background-color: #b0bec7;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 5%;
+        padding: 2%;
+        padding-top: 2%;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 60px;
+        color: white;
+    }
+  </style>    
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <div class = "mx-3">
+        
+        <div>
+            <% flash.each do |msg| %>
+            <div class="alert alert-danger">
+                <%= msg.join(": ").html_safe %>
+                    
+            </div>
+            <% end %>
+            
+            <div class="carte">
+                <div>
+                    <h1 class="mb-4 title">New event</h1>
+                <div>
+
+                <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+                    <h4><%= label_tag 'Title' %></h4>
+                    <%= text_field_tag 'event_title' %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Start date' %></h4>
+                    <%= text_field_tag 'event_start_date' %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Duration in minute' %></h4>
+                    <%= text_field_tag 'event_duration' %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Description' %></h4>
+                    <%= text_field_tag 'event_description' %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Price' %></h4>
+                    <%= text_field_tag 'event_price' %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Location' %></h4>
+                    <%= text_field_tag 'event_location' %>
+                    <br /> <br />
+
+                    <%= submit_tag("Create the event", :class=>"btn btn-info") %>
+
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+
+  </body>
+
+</html>
+

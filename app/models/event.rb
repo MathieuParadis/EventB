@@ -41,4 +41,8 @@ class Event < ApplicationRecord
     self.duration % 5 == 0
   end 
 
+  def end_date
+    return self.start_date + self.duration*60
+  end
+
 end

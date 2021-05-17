@@ -1,7 +1,7 @@
 class AdminMailer < ApplicationMailer
   default from: 'mathieu.thp@gmail.com'
 
-  def report_admin_email(admin)
+  def admin_report_email(admin)
   #on récupère l'instance user pour ensuite pouvoir la passer à la view en @user
   @admin = admin
  

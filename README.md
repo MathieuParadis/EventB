@@ -21,3 +21,6 @@ Run in following order:
 - rails db:migrate
 - rails db:seed to fill the database
 - rails server
+
+* Heroku link
+- https://eventbrite-devise-mat.herokuapp.com/

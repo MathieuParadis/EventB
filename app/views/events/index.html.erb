@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <style>
+                body {
+                font-family: Arial, Helvetica, sans-serif;
+                }
+
+                .flip-card {
+                background-color: transparent;
+                width: 300px;
+                height: 300px;
+                perspective: 1000px;
+                }
+
+                .flip-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+                box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+                }
+
+                .flip-card:hover .flip-card-inner {
+                transform: rotateY(180deg);
+                }
+
+                .flip-card-front, .flip-card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                -webkit-backface-visibility: hidden;
+                backface-visibility: hidden;
+                }
+
+                .flip-card-front {
+                background-color: #bbb;
+                color: black;
+                }
+
+                .flip-card-back {
+                background-color: #2980b9;
+                color: white;
+                transform: rotateY(180deg);
+                }
+            </style>
+        </head>
+
+    <body>
+
+        <div class = "mx-3">
+
+            <% flash.each do |msg| %>
+            <div class="alert alert-success">
+                <%= msg.join(": ").html_safe %>
+                
+            </div>
+            <% end %>
+
+        <!-- Reste de la page -->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col px-3">
+                        <% if current_user.first_name != nil %>
+                        <div class="jumbotron py-3 my-3 bg-dark text-white">
+                            <h1 class="text-warning">Bonjour <span class="text-white"><%= current_user.first_name %></span>, et Bienvenue sur <span class="font-weight-bold text-white">Eventbrite</span></h1>
+                            <p class="mt-3">Voici la liste des événements<br/>
+                        </div>
+
+                        <% else %>
+                        <div class="jumbotron py-3 my-3 bg-dark text-white">
+                            <h1 class="text-warning">Bonjour, et Bienvenue sur <span class="font-weight-bold text-white">Eventbrite</span></h1>
+                            <p class="mt-3">Voici la liste des événements<br/>
+                        </div>
+                        <% end %>
+
+                    </div>  
+                </div>
+
+                <ul class="d-flex list-unstyled">
+                    <li><%= link_to "Create event", new_event_path, class: "btn btn-secondary btn-lg text-light mt-3 mr-3" %></li>
+                </ul>
+
+                <div class="row">
+                <% @events.map do |event| %>
+                    <div class="col-12 col-sm-4 my-3 flip-card border-success">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front bg-light d-flex flex-column">
+                                <div class="card-header text-center pb-1 text-white bg-info">
+                                    <h2><%=event.title%></h2>
+                                </div>
+                                <div class="my-auto">
+                                    <h2 class="card-title text-warning py-2"><%=event.price%>$</h2>
+                                    <h4 class="card-text text-info"><%=event.description%></h4>
+                                </div>
+                            </div>
+
+                            <div class="flip-card-back d-flex flex-column bg-white">
+                                <div class="card-header text-center pb-1 text-wh bg-info">
+                                    <h2><%=event.title%></h2>
+                                </div>
+                                <div class="my-auto">
+                                    <p><%= link_to "Voir plus", event_path(event.id), class: "btn btn-success btn-lg"%></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+
+
+    </body>
+
+
+</html>

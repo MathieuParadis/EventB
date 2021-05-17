@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <style>
+    .carte {
+        background-color: #b0bec7;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 5%;
+        padding: 2%;
+        padding-top: 2%;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 60px;
+        color: white;
+    }
+  </style>    
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <div class = "mx-3">
+        <div>
+            <div class="carte">
+                <div>
+                    <h1 class="mb-4 title">My personal information</h1>
+                </div>
+                <div>
+                    <p><span class = "font-weight-bold">First name</span>: <%=@user.first_name%></p>
+                    <p><span class = "font-weight-bold">Last name</span>: <%=@user.last_name%></p>
+                    <p><span class = "font-weight-bold">Bio</span>: <%=@user.description%></p>
+                    <p><span class = "font-weight-bold">Email</span>: <%=@user.email%></p>
+                </div>
+
+                <div>
+                    <%= link_to "Update my information", edit_user_path(current_user.id), class: "btn btn-info mt-3"%>
+                    <%= link_to "Update my password and email", edit_user_registration_path, class: "btn btn-warning mt-3"%>
+
+                </div>
+
+                <% if @events_admin.count !=0 %>
+                <div>
+                    <h4 class="mt-5">Events you organized</h4>
+                    <% @events_admin.map do |event| %>
+                    <ul class="list-unstyled">
+                        <li>> <%= link_to event.title, event_path(event.id) %></li>
+                    </ul>
+                    <% end %>
+                </div>
+                <% end %>
+
+            </div>
+        </div>
+    </div>
+
+
+
+  </body>
+
+</html>
+
