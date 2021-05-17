@@ -11,7 +11,7 @@ attendances = []
 
 for i in 0..20 do
   u = User.create(email: "mat#{i}@yopmail.com" ,
-                  encrypted_password: "mdptest" ,
+                  password: "mdptest" ,
                   description: "J'aime le fromage" ,
                   first_name: Faker::Name.first_name, 
                   last_name: Faker::Name.last_name)
