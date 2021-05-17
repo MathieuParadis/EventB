@@ -4,7 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  after_create :welcome_send
+  # after_create :welcome_send
 
   has_many :events, foreign_key: 'admin_id', class_name: 'Event'
   has_many :attendances, foreign_key: 'guest_id', class_name: 'Attendance'
