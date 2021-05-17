@@ -9,10 +9,10 @@ users = []
 events = []
 attendances = []
 
-for i in 0..6 do
+for i in 0..20 do
   u = User.create(email: "mat#{i}@yopmail.com" ,
-                  encrypted_password: "mdptest" ,
-                  description: "rien a dire ici" ,
+                  password: "mdptest" ,
+                  description: "J'aime le fromage" ,
                   first_name: Faker::Name.first_name, 
                   last_name: Faker::Name.last_name)
 
@@ -20,7 +20,7 @@ for i in 0..6 do
 end
 
 for i in 0..10 do
-  admin = User.find(rand(1..User.count))
+  admin = User.find(rand(1..20))
 
   e = Event.create(start_date: Faker::Date.forward(days: 60),
                    duration: 180,
@@ -33,7 +33,7 @@ for i in 0..10 do
   events << e
 end
 
-10.times do
+50.times do
   guest = User.find(rand(1..User.count))
   event = Event.find(rand(1..Event.count))
 
