@@ -52,11 +52,20 @@
                         <p><span class="font-weight-bold">Location</span> <%= @event.location %></p>
                         <p><span class="font-weight-bold">Price</span> <%= @event.price %></p>
 
-
                         <p>
                             <span class="font-weight-bold"> Event created on</span>: <%=@event.created_at%> <br />
                             <span class="font-weight-bold"> Event updated on</span>: <%=@event.updated_at%> 
                         </p>
+
+                        <% if is_user_admin? %>
+                            <%= link_to "Event profile", attendances_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
+                        
+                        <% elsif is_user_attending? %>
+                            <h4>You applied to this event</h4>
+                        <% else %>
+                            <%= link_to "Join", new_attendance_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
+                        <% end %>
+
                     </div>
                 </div>
             </div>

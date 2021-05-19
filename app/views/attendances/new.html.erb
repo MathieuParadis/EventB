@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+  
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <style>
+    .carte {
+        background-color: #b0bec7;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 5%;
+        padding: 2%;
+        padding-top: 2%;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 60px;
+        color: white;
+    }
+  </style>    
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <div class = "mx-3">
+        
+        <div>
+            <% flash.each do |msg| %>
+            <div class="alert alert-danger">
+                <%= msg.join(": ").html_safe %>
+                    
+            </div>
+            <% end %>
+            
+            <div class="carte">
+                <div>
+                    <h1 class="mb-4 title">Join <%= @event.title %></h1>
+                <div>
+
+                <%= form_tag url_for(action: 'create'), method: "post" do %>
+
+
+                    <%= submit_tag("Apply", :class=>"btn btn-info") %>
+
+                <% end %>
+            </div>
+
+        </div>
+    </div>
+
+  </body>
+
+</html>
+

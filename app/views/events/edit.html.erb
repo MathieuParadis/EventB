@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+  
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <style>
+    .carte {
+        background-color: #b0bec7;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 5%;
+        padding: 2%;
+        padding-top: 2%;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 60px;
+        color: white;
+    }
+  </style>    
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+    <div class = "mx-3">
+        
+        <div>
+            <% flash.each do |msg| %>
+            <div class="alert alert-danger">
+                <%= msg.join(": ").html_safe %>
+                    
+            </div>
+            <% end %>
+            
+            <div class="carte">
+                <div>
+                    <h1 class="mb-4 title">Edit event</h1>
+                <div>
+
+                <%= form_tag url_for(action: 'update'), method: "patch" do %>
+
+                    <h4><%= label_tag 'Title' %></h4>
+                    <%= text_field_tag 'event_title', @event.title, class: "form-control" %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Start date' %></h4>
+                    <%= text_field_tag 'event_start_date', @event.start_date, class: "form-control" %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Duration in minute' %></h4>
+                    <%= text_field_tag 'event_duration', @event.duration, class: "form-control" %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Description' %></h4>
+                    <%= text_field_tag 'event_description', @event.description, class: "form-control" %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Price' %></h4>
+                    <%= text_field_tag 'event_price', @event.price, class: "form-control" %>
+                    <br /> <br />
+
+                    <h4><%= label_tag 'Location' %></h4>
+                    <%= text_field_tag 'event_location', @event.location, class: "form-control" %>
+                    <br /> <br />
+
+                    <%= submit_tag("Apply modification", :class=>"btn btn-info btn-lg btn-block") %>
+
+                <% end %>
+
+                <div>
+                    <h3 class="mt-5 text-white">Change of plan?</h3>
+                    <%= link_to "Delete event", event_path(@event.id), method: :delete, class: "btn btn-danger btn-block btn-lg mt-3 ml-2"%>
+                <div>
+            </div>
+
+        </div>
+    </div>
+
+  </body>
+
+</html>
+

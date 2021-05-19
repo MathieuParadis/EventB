@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Eventbrite</title>
+  
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+  <style>
+    .carte {
+        background-color: #b0bec7;
+        text-align: center;
+        margin-left: 35%;
+        margin-right: 35%;
+        margin-top: 5%;
+        padding: 2%;
+        padding-top: 2%;
+        border-radius: 20px;
+    }
+
+    .title {
+        font-size: 60px;
+        color: white;
+    }
+  </style>    
+
+  </head>
+
+  <body>
+    <%= yield %>
+
+        <div class = "mx-3">
+            
+
+            <div>
+                <% flash.each do |msg| %>
+                <div class="alert alert-success">
+                    <%= msg.join(": ").html_safe %>
+                        
+                </div>
+                <% end %>
+                
+                <div class="carte">
+                    <div>
+                        <h1 class="mb-4 title"><%=@event.title %></h1>
+                        <div>
+                            <h4>Number of guests</span>: <%=@attendances.count %> <br/></h4>
+                        </div>
+                        <div>
+                            <h4 class="mb-4">Guest list</h4>
+                            <% @attendances.map do |attendance| %>
+                            <p><%= attendance.guest.first_name %> <%= attendance.guest.last_name %>  <br/></p>
+
+                            <% end %>
+                        </div>
+                    </div>
+                    <p>
+                        <%= link_to "Edit event", edit_event_path(@event.id), class: "btn btn-success btn-lg mt-3 mr-2"%>
+                        <%= link_to "Delete event", event_path(@event.id), method: :delete, class: "btn btn-danger btn-lg mt-3 ml-2"%>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+  </body>
+
+</html>
+
+
+
