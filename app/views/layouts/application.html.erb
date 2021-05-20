@@ -36,7 +36,7 @@
             <div id="navbarContent" class="collapse navbar-collapse justify-content-between">
               <ul class="navbar-nav mt-1">
                 <li class="nav-item active mr-4">
-                  <%= link_to "Accueil", root_path, class:"text-light" %>
+                  <%= link_to "Home", root_path, class:"text-light" %>
                 </li>
                 <li class="nav-item active mr-4">
                   <%= link_to "Create event", new_event_path, class:"text-light" %>
@@ -48,8 +48,8 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <%# <%= link_to "Mon profil", user_path(user_session.id), class:"dropdown-item" %>
-                  <%= link_to "Mon profil", user_path(current_user.id), class:"dropdown-item" %>
-                  <%= link_to "Se déconnecter", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
+                  <%= link_to "My profile", user_path(current_user.id), class:"dropdown-item" %>
+                  <%= link_to "Log out", destroy_user_session_path, method: :delete, class:"dropdown-item" %>
                 </div>
               </div>
             </div>
@@ -78,8 +78,8 @@
                   Connection
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <%= link_to "S'inscrire", new_user_registration_path, class:"dropdown-item" %>
-                  <%= link_to "Se connecter", new_user_session_path, class:"dropdown-item" %>
+                  <%= link_to "Sign up", new_user_registration_path, class:"dropdown-item" %>
+                  <%= link_to "Log in", new_user_session_path, class:"dropdown-item" %>
                 </div>
               </div>
             </div>
