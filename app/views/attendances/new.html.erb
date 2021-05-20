@@ -41,15 +41,30 @@
             
             <div class="carte">
                 <div>
-                    <h1 class="mb-4 title">Join <%= @event.title %></h1>
+                    <h1 class="mb-4 title"><%= @event.title %></h1>
                 <div>
 
-                <%= form_tag url_for(action: 'create'), method: "post" do %>
+                              <%= form_tag url_for(action: 'create'), method: "post" do %>
+                              <article>
+                                <% if flash[:error].present? %>
+                                  <div id="error_explanation">
+                                    <p><%= flash[:error] %></p>
+                                  </div>
+                                <% end %>
+                                <label class="amount mb-4">
+                                  <span>Amount to pay: <%= @event.price%>$</span>
+                                </label>
+                              </article>
+                              <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                                  data-description="Achat d'un produit"
+                                  data-amount= "<%= @event.price * 100  %>""
+                                  data-locale="auto">
+                              </script>
+                              <% end %>
 
 
-                    <%= submit_tag("Apply", :class=>"btn btn-info") %>
 
-                <% end %>
             </div>
 
         </div>

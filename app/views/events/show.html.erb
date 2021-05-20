@@ -58,12 +58,12 @@
                         </p>
 
                         <% if is_user_admin? %>
-                            <%= link_to "Event profile", attendances_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
+                            <%= link_to "Event profile", event_attendances_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
                         
                         <% elsif is_user_attending? %>
-                            <h4>You applied to this event</h4>
+                            <h4 class="mt-4 text-info">You applied to this event</h4>
                         <% else %>
-                            <%= link_to "Join", new_attendance_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
+                            <%= link_to "Join", new_event_attendance_path(@event.id), class: "btn btn-primary btn-lg text-light mt-3 mr-3" %>
                         <% end %>
 
                     </div>

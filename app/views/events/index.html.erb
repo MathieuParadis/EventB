@@ -66,14 +66,14 @@
                     <div class="col px-3">
                         <% if current_user.first_name != nil %>
                         <div class="jumbotron py-3 my-3 bg-dark text-white">
-                            <h1 class="text-warning">Bonjour <span class="text-white"><%= current_user.first_name %></span>, et Bienvenue sur <span class="font-weight-bold text-white">Eventbrite</span></h1>
-                            <p class="mt-3">Voici la liste des événements<br/>
+                            <h1 class="text-warning">Hello <span class="text-white"><%= current_user.first_name %></span>, and Welcome on <span class="font-weight-bold text-white">Eventbrite</span></h1>
+                            <p class="mt-3">Here is the list of events available<br/>
                         </div>
 
                         <% else %>
                         <div class="jumbotron py-3 my-3 bg-dark text-white">
-                            <h1 class="text-warning">Bonjour, et Bienvenue sur <span class="font-weight-bold text-white">Eventbrite</span></h1>
-                            <p class="mt-3">Voici la liste des événements<br/>
+                            <h1 class="text-warning">Hello, and Welcome on <span class="font-weight-bold text-white">Eventbrite</span></h1>
+                            <p class="mt-3">Here is the list of events available<br/>
                         </div>
                         <% end %>
 
@@ -103,7 +103,7 @@
                                     <h2><%=event.title%></h2>
                                 </div>
                                 <div class="my-auto">
-                                    <p><%= link_to "Voir plus", event_path(event.id), class: "btn btn-success btn-lg"%></p>
+                                    <p><%= link_to "See more", event_path(event.id), class: "btn btn-success btn-lg"%></p>
                                 </div>
                             </div>
                         </div>
